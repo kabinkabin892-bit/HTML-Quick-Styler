@@ -1,0 +1,38 @@
+class ColorPaletteGenerator:
+
+    def __init__(self):
+        self.palettes = {
+            "modern": {
+                "primary": "#6366f1",
+                "secondary": "#8b5cf6",
+                "accent": "#ec4899",
+                "background": "#0f172a",
+                "surface": "#1e293b",
+                "text_primary": "#ffffff",
+                "text_secondary": "#cbd5e1",
+                "border": "#334155"
+            },
+            "ocean": {
+                "primary": "#0284c7",
+                "secondary": "#0ea5e9",
+                "accent": "#22d3ee",
+                "background": "#082f49",
+                "surface": "#0c4a6e",
+                "text_primary": "#ffffff",
+                "text_secondary": "#bae6fd",
+                "border": "#075985"
+            },
+            "forest": {
+                "primary": "#16a34a",
+                "secondary": "#15803d",
+                "accent": "#22c55e",
+                "background": "#052e16",
+                "surface": "#14532d",
+                "text_primary": "#ffffff",
+                "text_secondary": "#bbf7d0",
+                "border": "#166534"
+            }
+        }
+
+    def get_palette(self, style):
+        return self.palettes.get(style, self.palettes["modern"])

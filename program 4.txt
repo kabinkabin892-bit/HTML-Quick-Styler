@@ -1,0 +1,56 @@
+class HTMLPageBuilder:
+
+    def __init__(self, palette):
+        self.palette = palette
+
+    def generate_hero(self, title):
+        return f"""
+        <section class="hero">
+            <h1>{title}</h1>
+            <p>Welcome to our professional website</p>
+            <button>Get Started</button>
+        </section>
+        """
+
+    def generate_about(self):
+        return """
+        <section class="about">
+            <h2>About Us</h2>
+            <p>We create modern and responsive websites.</p>
+        </section>
+        """
+
+    def generate_contact(self):
+        return """
+        <section class="contact">
+            <h2>Contact Us</h2>
+            <form>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Message"></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </section>
+        """
+
+    def build_page(self, title):
+        hero = self.generate_hero(title)
+        about = self.generate_about()
+        contact = self.generate_contact()
+
+        return f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>{title}</title>
+            <style>
+                {generate_css(self.palette)}
+            </style>
+        </head>
+        <body>
+            {hero}
+            {about}
+            {contact}
+        </body>
+        </html>
+        """

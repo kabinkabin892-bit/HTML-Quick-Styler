@@ -1,0 +1,35 @@
+import gradio as gr
+
+palette_generator = ColorPaletteGenerator()
+
+def generate_page(title, description, style):
+    palette = palette_generator.get_palette(style)
+    builder = HTMLPageBuilder(palette)
+    html_code = builder.build_page(title)
+    return html_code
+
+with gr.Blocks() as app:
+    gr.Markdown("# HTML Quick-Styler")
+
+    with gr.Tab("Generate Page"):
+        title = gr.Textbox(label="Page Title")
+        description = gr.Textbox(label="Description")
+        style = gr.Dropdown(["modern", "ocean", "forest"], label="Color Style")
+        output = gr.Code(language="html")
+        btn = gr.Button("Generate")
+        btn.click(generate_page, [title, description, style], output)
+
+    with gr.Tab("Live Preview"):
+        preview = gr.HTML()
+        btn.click(generate_page, [title, description, style], preview)
+
+    with gr.Tab("Color Palettes"):
+        gr.Markdown("Available Styles: modern, ocean, forest")
+
+    with gr.Tab("Templates"):
+        gr.Markdown("Hero, About, Contact templates included.")
+
+    with gr.Tab("Guide"):
+        gr.Markdown("1. Enter Title\n2. Select Style\n3. Click Generate")
+
+app.launch(share=True)
